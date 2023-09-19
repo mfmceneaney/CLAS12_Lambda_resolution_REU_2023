@@ -558,33 +558,33 @@ def main(file_list,step=100):
     vz_validation = vz_normalized[split_index_1_o:split_index_2_o]
     vz_test = vz_normalized[split_index_2_o:]
 
-# input for training the neural network
-xyz_training = [sublist1 + sublist2 + sublist3 + sublist4 + sublist5 + sublist6 for sublist1, sublist2, sublist3, sublist4, sublist5, sublist6
-                in zip(x_training, y_training, z_training, p_input_training, theta_input_training, phi_input_training)]  
+    # input for training the neural network
+    xyz_training = [sublist1 + sublist2 + sublist3 + sublist4 + sublist5 + sublist6 for sublist1, sublist2, sublist3, sublist4, sublist5, sublist6
+                    in zip(x_training, y_training, z_training, p_input_training, theta_input_training, phi_input_training)]  
 
-# output labels for training the net
-# ALSO includes vertex data now
-p_theta_phi_training = [[0,0,0,0,0,0] for i in range(0, len(p_training))]
-for i,_ in enumerate(p_training):
-    p_theta_phi_training[i][0] = p_training[i]
-    p_theta_phi_training[i][1] = theta_training[i]
-    p_theta_phi_training[i][2] = phi_training[i]
-    p_theta_phi_training[i][3] = vx_training[i]
-    p_theta_phi_training[i][4] = vy_training[i]
-    p_theta_phi_training[i][5] = vz_training[i]
+    # output labels for training the net
+    # ALSO includes vertex data now
+    p_theta_phi_training = [[0,0,0,0,0,0] for i in range(0, len(p_training))]
+    for i,_ in enumerate(p_training):
+        p_theta_phi_training[i][0] = p_training[i]
+        p_theta_phi_training[i][1] = theta_training[i]
+        p_theta_phi_training[i][2] = phi_training[i]
+        p_theta_phi_training[i][3] = vx_training[i]
+        p_theta_phi_training[i][4] = vy_training[i]
+        p_theta_phi_training[i][5] = vz_training[i]
 
-# validation input data
-xyz_validation = [sublist1 + sublist2 + sublist3 + sublist4 + sublist5 + sublist6 for sublist1, sublist2, sublist3, sublist4, sublist5, sublist6
-                in zip(x_validation, y_validation, z_validation, p_input_validation, theta_input_validation, phi_input_validation)]  
-# validation output data
-p_theta_phi_validation = [[0,0,0,0,0,0] for i in range(0, len(p_validation))]
-for i,_ in enumerate(p_validation):
-    p_theta_phi_validation[i][0] = p_validation[i]
-    p_theta_phi_validation[i][1] = theta_validation[i]
-    p_theta_phi_validation[i][2] = phi_validation[i]
-    p_theta_phi_validation[i][3] = vx_validation[i]
-    p_theta_phi_validation[i][4] = vy_validation[i]
-    p_theta_phi_validation[i][5] = vz_validation[i]
+    # validation input data
+    xyz_validation = [sublist1 + sublist2 + sublist3 + sublist4 + sublist5 + sublist6 for sublist1, sublist2, sublist3, sublist4, sublist5, sublist6
+                    in zip(x_validation, y_validation, z_validation, p_input_validation, theta_input_validation, phi_input_validation)]  
+    # validation output data
+    p_theta_phi_validation = [[0,0,0,0,0,0] for i in range(0, len(p_validation))]
+    for i,_ in enumerate(p_validation):
+        p_theta_phi_validation[i][0] = p_validation[i]
+        p_theta_phi_validation[i][1] = theta_validation[i]
+        p_theta_phi_validation[i][2] = phi_validation[i]
+        p_theta_phi_validation[i][3] = vx_validation[i]
+        p_theta_phi_validation[i][4] = vy_validation[i]
+        p_theta_phi_validation[i][5] = vz_validation[i]
 
     # test input data
     xyz_test = [sublist1 + sublist2 + sublist3 + sublist4 + sublist5 + sublist6 for sublist1, sublist2, sublist3, sublist4, sublist5, sublist6
