@@ -638,6 +638,6 @@ def main(file_list,step=100):
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=1: print("Usage: ",os.abspath(sys.argv[0])," file1 file2 ...")
+    if len(sys.argv)<=1: print("Usage: ",os.path.abspath(sys.argv[0])," file1 file2 ...")
     file_list = sys.argv[1:]
     main(file_list)
