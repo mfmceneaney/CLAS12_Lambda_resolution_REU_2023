@@ -119,7 +119,7 @@ def main(file_list,step=100):
     start_time = timeit.default_timer()
     banks = ["REC::Particle","REC::Traj","MC::Lund"]
     for k,batch in enumerate(hp.iterate(file_list,banks=banks,step=step)):
-        if (k > max_events):
+        if (k > max_batches):
                 break
         
         px_array = batch["REC::Particle_px"]
