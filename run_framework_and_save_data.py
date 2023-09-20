@@ -13,7 +13,7 @@ import os
 
 import sys #NOTE: ADDED
 
-def main(file_list,step=100):
+def main(file_list,out_path1,out_path2,step=100):
 
     # Set LaTeX font for Matplotlib
     rc('text', usetex=True)
@@ -119,8 +119,8 @@ def main(file_list,step=100):
     start_time = timeit.default_timer()
     banks = ["REC::Particle","REC::Traj","MC::Lund"]
     for k,batch in enumerate(hp.iterate(file_list,banks=banks,step=step)):
-        if (k > max_batches):
-                break
+        # if (k > max_batches):
+        #         break
         
         px_array = batch["REC::Particle_px"]
         for i,_ in enumerate(px_array):
@@ -631,13 +631,15 @@ def main(file_list,step=100):
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
 
     #NOTE: #TODO: SAVE TO CSV
-    np.savetxt('xyz_training.csv', xyz_training, delimiter=',')
-    np.savetxt('p_theta_phi_training.csv', p_theta_phi_training, delimiter=',')
+    np.savetxt(out_path1, xyz_training, delimiter=',')
+    np.savetxt(out_path2, p_theta_phi_training, delimiter=',')
 
     print("EXITING MAIN")
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=1: print("Usage: ",os.path.abspath(sys.argv[0])," file1 file2 ...")
-    file_list = sys.argv[1:]
-    main(file_list)
+    if len(sys.argv)<=3: print("Usage: ",os.path.abspath(sys.argv[0])," file1 file2 ...")
+    out_path1 = sys.argv[1]
+    out_path2 = sys.argv[2]
+    file_list = sys.argv[3:]
+    main(file_list,out_path1,out_path2)
