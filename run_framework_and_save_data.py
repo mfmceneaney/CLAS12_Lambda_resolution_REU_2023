@@ -639,7 +639,7 @@ def main(file_list,out_path1,out_path2,step=100):
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
     if len(sys.argv)<=3: print("Usage: ",os.path.abspath(sys.argv[0])," file1 file2 ...")
-    out_path1 = sys.argv[1]
-    out_path2 = sys.argv[2]
+    out_path1 = os.path.abspath(sys.argv[1])
+    out_path2 = os.path.abspath(sys.argv[2])
     file_list = sys.argv[3:]
     main(file_list,out_path1,out_path2)
