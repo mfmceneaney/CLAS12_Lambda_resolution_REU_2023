@@ -13,7 +13,15 @@ import os
 
 import sys #NOTE: ADDED
 
-def main(file_list,train_path1,train_path1,val_path1,val_path2,test_path1,test_path2,step=100):
+def main(
+    file_list,
+    train_path1,
+    train_path2,
+    val_path1,
+    val_path2,
+    test_path1,
+    test_path2,
+    step=100):
 
     # Set LaTeX font for Matplotlib
     rc('text', usetex=True)
@@ -652,4 +660,12 @@ if __name__=="__main__":
     test_path1  = os.path.abspath(sys.argv[5])
     test_path2  = os.path.abspath(sys.argv[6])
     file_list   = sys.argv[7:]
-    main(file_list,train_path1,train_path1,val_path1,val_path2,test_path1,test_path2)
+    main(
+        file_list,
+        train_path1,
+        train_path2,
+        val_path1,
+        val_path2,
+        test_path1,
+        test_path2
+    )
