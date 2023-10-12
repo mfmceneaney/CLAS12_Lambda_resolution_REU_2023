@@ -114,13 +114,13 @@ def main(file_list,train_path1,train_path1,val_path1,val_path2,test_path1,test_p
     q2 = []
 
     # limit on iterations (for each hipo file)
-    max_batches = 2 #NOTE: MAXIMUM NUMBER OF BATCHES TO PROCESS FOR DEBUGGING LIMITATIONS...
+    max_batches = 1000 #NOTE: MAXIMUM NUMBER OF BATCHES TO PROCESS FOR DEBUGGING LIMITATIONS...
 
     start_time = timeit.default_timer()
     banks = ["REC::Particle","REC::Traj","MC::Lund"]
     for k,batch in enumerate(hp.iterate(file_list,banks=banks,step=step)):
-        # if (k > max_batches):
-        #         break
+        if (k > max_batches):
+                break
         
         px_array = batch["REC::Particle_px"]
         for i,_ in enumerate(px_array):
