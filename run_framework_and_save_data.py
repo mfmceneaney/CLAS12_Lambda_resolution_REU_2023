@@ -447,12 +447,12 @@ def main(
     y_normalized = normalize_2d_list(y)
     z_normalized = normalize_2d_list(z)
 
-    # normalize vertex output data
-    vx_max = max(vx)
-    vy_max = max(vy)
-    vz_max = max(vz)
+    # # normalize vertex output data
+    vx_max = 20 # max(vx) #NOTE: NOW JUST GUESS AT MAXES SO IT ISN'T DATASET OR FILE DEPENDENT AND YOU CAN THEN JUST LOAD BACK IN AND UNNORMALIZE NO PROBLEM.
+    vy_max = 5  # max(vy)
+    vz_max = 5  # max(vz)
 
-    vx_normalized = [filler / vx_max for filler in vx]
+    vx_normalized = [filler / vx_max for filler in vx] 
     vy_normalized = [filler / vy_max for filler in vy]
     vz_normalized = [filler / vz_max for filler in vz]
 

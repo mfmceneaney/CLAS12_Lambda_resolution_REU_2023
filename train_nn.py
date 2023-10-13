@@ -147,6 +147,11 @@ def main(
     # Un-normalize phi values to the range [-180, 180]
     phi_predictions = [phi * 360 - 180 for phi in phi_predictions_normalized]
 
+    # Define vertex normalization parameters
+    vx_max = 20 # max(vx) #NOTE: NOW JUST GUESS AT MAXES SO IT ISN'T DATASET OR FILE DEPENDENT AND YOU CAN THEN JUST LOAD BACK IN AND UNNORMALIZE NO PROBLEM.
+    vy_max = 5  # max(vy)
+    vz_max = 5  # max(vz)
+
     # Un-normalize vx, vy, vz
     vx_predictions = [filler * vx_max for filler in vx_predictions_normalized]
 
