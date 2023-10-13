@@ -652,7 +652,7 @@ def main(
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=3: print("Usage: ",os.path.abspath(sys.argv[0])," file1 file2 ...")
+    if len(sys.argv)<=3: print("Usage: python3 ",os.path.abspath(sys.argv[0])," file1 file2 ...")
     train_path1 = os.path.abspath(sys.argv[1])
     train_path2 = os.path.abspath(sys.argv[2])
     val_path1   = os.path.abspath(sys.argv[3])

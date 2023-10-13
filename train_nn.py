@@ -283,7 +283,7 @@ def main(
 if __name__=="__main__":
     if len(sys.argv)<=7:
         print(
-        "Usage: ",os.path.abspath(sys.argv[0]),
+        "Usage: python3",os.path.abspath(sys.argv[0]),
         " 'xyz_train_regex' 'ptp_train_regex' 'xyz_val_regex' 'ptp_val_regex' 'xyz_test_regex' 'ptp_test_regex'"
         )
         sys.exit(0)
