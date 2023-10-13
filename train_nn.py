@@ -25,25 +25,36 @@ def load_file_list(file_list,delimiter=',',dtype=np.float):
 
 
 def main(
-        xyz_train_file_list,
-        p_theta_phi_train_file_list,
-        xyz_val_file_list,
-        p_theta_phi_val_file_list,
-        xyz_test_file_list,
-        p_theta_phi_test_file_list
+        xyz_file_list,
+        ptp_file_list,
+        split,
         ):
 
     # Load training data
-    xyz_training = load_file_list(xyz_train_file_list)
-    p_theta_phi_training = load_file_list(p_theta_phi_train_file_list)
+    xyz_full = load_file_list(xyz_file_list)
+    ptp_full = load_file_list(ptp_file_list)
 
-    # Load validation data
-    xyz_validation = load_file_list(xyz_val_file_list)
-    p_theta_phi_validation= load_file_list(p_theta_phi_val_file_list)
+    # Get split indices
+    max_len = len(xyz_full)
+    cum_frac = 0.0
+    split_indices = []
+    for frac in split:
+        cum_frac += frac
+        if cum_frac>=1.0: break
+        idx = int(cum_frac*max_len)
+        split_indices.append(idx)
 
-    # Load test data
-    xyz_test = load_file_list(xyz_test_file_list)
-    p_theta_phi_test = load_file_list(p_theta_phi_test_file_list)
+    # Split into train, test val
+    xyz_training           = xyz_full[:split_indices[0]]
+    p_theta_phi_training   = ptp_full[:split_indices[0]]
+    xyz_validation         = xyz_full[split_indices[0]:split_indices[1]]
+    p_theta_phi_validation = ptp_full[split_indices[0]:split_indices[1]]
+    xyz_test               = xyz_full[split_indices[1]:]
+    p_theta_phi_test       = ptp_full[split_indices[1]:]
+
+    print("INFO: xyz, ptp train length = ",len(xyz_training),len(p_theta_phi_training))
+    print("INFO: xyz, ptp val   length = ",len(xyz_validation),len(p_theta_phi_validation))
+    print("INFO: xyz, ptp test  length = ",len(xyz_test),len(p_theta_phi_test))
 
     #TODO: ------------------------------ INSERT JOSEPH'S CODE HERE.  MAKE SURE PLOTS GET SAVED THOUGH. ------------------------------#
 
@@ -281,24 +292,18 @@ def main(
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=7:
+    if len(sys.argv)<=3:
         print(
         "Usage: python3",os.path.abspath(sys.argv[0]),
-        " 'xyz_train_regex' 'ptp_train_regex' 'xyz_val_regex' 'ptp_val_regex' 'xyz_test_regex' 'ptp_test_regex'"
+        " 'xyz_regex' 'ptp_regex' "
         )
         sys.exit(0)
 
-    xyz_train_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1])]
-    ptp_train_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[2])]
-    xyz_val_file_list   = [os.path.abspath(el) for el in glob.glob(sys.argv[3])]
-    ptp_val_file_list   = [os.path.abspath(el) for el in glob.glob(sys.argv[4])]
-    xyz_test_file_list  = [os.path.abspath(el) for el in glob.glob(sys.argv[5])]
-    ptp_test_file_list  = [os.path.abspath(el) for el in glob.glob(sys.argv[6])]
+    xyz_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1])]
+    ptp_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[2])]
+    split         = (0.8,0.1,0.1) #NOTE: #TODO: SET FROM CLI
     main(
-        xyz_train_file_list,
-        ptp_train_file_list,
-        xyz_val_file_list,
-        ptp_val_file_list,
-        xyz_test_file_list,
-        ptp_test_file_list
+        xyz_file_list,
+        ptp_file_list,
+        split
         )
