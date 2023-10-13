@@ -281,10 +281,13 @@ def main(
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=7: print(
+    if len(sys.argv)<=7:
+        print(
         "Usage: ",os.path.abspath(sys.argv[0]),
         " 'xyz_train_regex' 'ptp_train_regex' 'xyz_val_regex' 'ptp_val_regex' 'xyz_test_regex' 'ptp_test_regex'"
         )
+        sys.exit(0)
+
     xyz_train_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1])]
     ptp_train_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[2])]
     xyz_val_file_list   = [os.path.abspath(el) for el in glob.glob(sys.argv[3])]
@@ -299,4 +302,3 @@ if __name__=="__main__":
         xyz_test_file_list,
         ptp_test_file_list
         )
-        
