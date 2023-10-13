@@ -15,12 +15,8 @@ import sys #NOTE: ADDED
 
 def main(
     file_list,
-    train_path1,
-    train_path2,
-    val_path1,
-    val_path2,
-    test_path1,
-    test_path2,
+    out_path1,
+    out_path2,
     step=100):
 
     # Set LaTeX font for Matplotlib
@@ -638,34 +634,22 @@ def main(
 
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
 
-    #NOTE: #TODO: SAVE TO CSV
-    np.savetxt(train_path1, xyz_training, delimiter=',')
-    np.savetxt(train_path2, p_theta_phi_training, delimiter=',')
-
-    np.savetxt(val_path1, xyz_validation, delimiter=',')
-    np.savetxt(val_path2, p_theta_phi_validation, delimiter=',')
-
-    np.savetxt(test_path1, xyz_test, delimiter=',')
-    np.savetxt(test_path2, p_theta_phi_test, delimiter=',')
+    #NOTE: ADDED: SAVE ENTIRE DATASET TO CSV
+    xyz_full = np.concantenate((xyz_training,xyz_val,xyz_test))
+    ptp_full = np.concantenate((p_theta_phi_training,p_theta_phi_val,p_theta_phi_test))
+    np.savetxt(out_path1, xyz_full, delimiter=',')
+    np.savetxt(out_path2, ptp_full, delimiter=',')
 
     print("EXITING MAIN")
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=3: print("Usage: python3 ",os.path.abspath(sys.argv[0])," file1 file2 ...")
-    train_path1 = os.path.abspath(sys.argv[1])
-    train_path2 = os.path.abspath(sys.argv[2])
-    val_path1   = os.path.abspath(sys.argv[3])
-    val_path2   = os.path.abspath(sys.argv[4])
-    test_path1  = os.path.abspath(sys.argv[5])
-    test_path2  = os.path.abspath(sys.argv[6])
-    file_list   = sys.argv[7:]
+    if len(sys.argv)<=3: print("Usage: python3 ",os.path.abspath(sys.argv[0])," outpath_xyz outpath_ptp file1 file2 file3 ...")
+    out_path1 = os.path.abspath(sys.argv[1])
+    out_path2 = os.path.abspath(sys.argv[2])
+    file_list = sys.argv[3:]
     main(
         file_list,
-        train_path1,
-        train_path2,
-        val_path1,
-        val_path2,
-        test_path1,
-        test_path2
+        out_path1,
+        out_path2,
     )
