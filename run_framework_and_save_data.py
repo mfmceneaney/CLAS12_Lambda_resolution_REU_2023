@@ -644,7 +644,9 @@ def main(
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=3: print("Usage: python3 ",os.path.abspath(sys.argv[0])," outpath_xyz outpath_ptp file1 file2 file3 ...")
+    if len(sys.argv)<=3:
+        print("Usage: python3 ",os.path.abspath(sys.argv[0])," outpath_xyz outpath_ptp file1 file2 file3 ...")
+        sys.exit(0)
     out_path1 = os.path.abspath(sys.argv[1])
     out_path2 = os.path.abspath(sys.argv[2])
     file_list = sys.argv[3:]
