@@ -635,8 +635,8 @@ def main(
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
 
     #NOTE: ADDED: SAVE ENTIRE DATASET TO CSV
-    xyz_full = np.concatenate((xyz_training,xyz_val,xyz_test))
-    ptp_full = np.concatenate((p_theta_phi_training,p_theta_phi_val,p_theta_phi_test))
+    xyz_full = np.concatenate((xyz_training,xyz_validation,xyz_test))
+    ptp_full = np.concatenate((p_theta_phi_training,p_theta_phi_validation,p_theta_phi_test))
     np.savetxt(out_path1, xyz_full, delimiter=',')
     np.savetxt(out_path2, ptp_full, delimiter=',')
 
