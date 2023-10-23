@@ -14,12 +14,12 @@ import os
 import sys #NOTE: ADDED
 import glob #NOTE: ADDED
 
-def load_file_list(file_list,delimiter=',',dtype=np.float):
+def load_file_list(file_list,delimiter=',',dtype=float):
     arr = []
     for path in file_list:
         a = np.loadtxt(path,delimiter=",", dtype=dtype)
         if len(arr)==0: arr = a
-        else: arr = np.concatenate(arr,a)
+        else: arr = np.concatenate((arr,a))
     
     return arr
 
