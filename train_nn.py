@@ -56,6 +56,27 @@ def main(
     print("INFO: xyz, ptp val   length = ",len(xyz_validation),len(p_theta_phi_validation))
     print("INFO: xyz, ptp test  length = ",len(xyz_test),len(p_theta_phi_test))
 
+    # Get truth info from ptp here
+    print("DEBUGGING: np.shape(p_theta_phi_test) = ",np.shape(p_theta_phi_test))
+    p_true, theta_true, phi_true, vx_true, vy_true, vz_true = zip(np.swapaxes(p_theta_phi_test,0,1))
+    p_true     =  np.squeeze(p_true)
+    theta_true = np.squeeze(theta_true)
+    phi_true   = np.squeeze(phi_true)
+    vx_true    = np.squeeze(vx_true)
+    vy_true    = np.squeeze(vy_true)
+    vz_true    = np.squeeze(vz_true)
+    print("INFO: np.shape(p_true), np.shape(theta_true), np.shape(phi_true) = ",np.shape(p_true),np.shape(theta_true),np.shape(phi_true))
+    print("INFO: np.shape(vx_true), np.shape(vy_true), np.shape(vz_true) = ",np.shape(vx_true),np.shape(vy_true),np.shape(vz_true))
+
+    # Normalize theta values to the range [0, 1]
+    theta_true = [theta * 180 for theta in theta_true]
+
+    # Normalize phi values to the range [0, 1]
+    phi_true = [(phi * 360) -180 for phi in phi_true]
+
+    # Normalize p values to the range [0, 1]
+    p_true = [p * 2 for p in p_true]
+
     #TODO: ------------------------------ INSERT JOSEPH'S CODE HERE.  MAKE SURE PLOTS GET SAVED THOUGH. ------------------------------#
 
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
