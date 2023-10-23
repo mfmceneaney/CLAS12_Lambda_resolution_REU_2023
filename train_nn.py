@@ -130,13 +130,13 @@ def main(
     axs1[0,0].set_ylabel("Count")
 
     axs1[0,1].hist(theta_predictions_normalized, bins=50, color="goldenrod")
-    axs1[0,1].set_xlabel("azimuthal angle (degrees)")
+    axs1[0,1].set_xlabel("polar angle (degrees)")
     axs1[0,1].set_ylabel("Count")
 
     axs1[0,1].set_title("p, theta, and phi normalized predictions\n\n", loc='center', fontsize=24)
 
     axs1[0,2].hist(phi_predictions_normalized, bins=50, color="peru")
-    axs1[0,2].set_xlabel("polar angle (degrees)")
+    axs1[0,2].set_xlabel("azimuthal angle (degrees)")
     axs1[0,2].set_ylabel("Count")
 
 
@@ -192,13 +192,13 @@ def main(
     axs1[0,0].set_ylabel("Count")
 
     axs1[0,1].hist(theta_predictions, bins=50, color="goldenrod")
-    axs1[0,1].set_xlabel("azimuthal angle (degrees)")
+    axs1[0,1].set_xlabel("polar angle (degrees)")
     axs1[0,1].set_ylabel("Count")
 
     axs1[0,1].set_title("p, theta, and phi predictions\n\n", loc='center', fontsize=24)
 
     axs1[0,2].hist(phi_predictions, bins=50, color="peru")
-    axs1[0,2].set_xlabel("polar angle (degrees)")
+    axs1[0,2].set_xlabel("azimuthal angle (degrees)")
     axs1[0,2].set_ylabel("Count")
 
 
