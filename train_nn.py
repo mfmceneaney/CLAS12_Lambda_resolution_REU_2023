@@ -221,7 +221,7 @@ def main(
 
     len(xyz_test)
 
-    print("p vector lengths:", len(p_true), len(p_predictions), (len(p_true) * len(p_predictions)))
+    # print("p vector lengths:", len(p_true), len(p_predictions), (len(p_true) * len(p_predictions)))
 
     # matching with cutoffs |theta_mc-theta_rec|<2deg and |phi_mc-phi_rec|<6deg, minimize quadrature sum error
     # change matching formula to also include momentum? |p_true - p_predictions|<0.05 GeV
