@@ -77,6 +77,45 @@ def main(
     # Normalize p values to the range [0, 1]
     p_true = [p * 2 for p in p_true]
 
+    # Create a grid of subplots
+    fig1, axs1 = plt.subplots(2, 3, figsize=(25, 16))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    axs1[0,0].hist(p_true, bins=50, color="maroon")
+    axs1[0,0].set_xlabel("momentum, p (GeV)")
+    axs1[0,0].set_ylabel("Count")
+
+    axs1[0,1].hist(theta_true, bins=50, color="goldenrod")
+    axs1[0,1].set_xlabel("polar angle (degrees)")
+    axs1[0,1].set_ylabel("Count")
+
+    axs1[0,1].set_title("p, theta, and phi normalized predictions\n\n", loc='center', fontsize=24)
+
+    axs1[0,2].hist(phi_true, bins=50, color="peru")
+    axs1[0,2].set_xlabel("azimuthal angle (degrees)")
+    axs1[0,2].set_ylabel("Count")
+
+
+    axs1[1,0].hist(vx_true, bins=50, color="maroon")
+    axs1[1,0].set_xlabel("vx (cm)")
+    axs1[1,0].set_ylabel("Count")
+
+    axs1[1,1].hist(vy_true, bins=50, color="goldenrod")
+    axs1[1,1].set_xlabel("vy (cm)")
+    axs1[1,1].set_ylabel("Count")
+
+    axs1[1,1].set_title("vertex normalized predictions\n\n", loc='center', fontsize=24)
+
+    axs1[1,2].hist(vz_true, bins=50, color="peru")
+    axs1[1,2].set_xlabel("vz (cm)")
+    axs1[1,2].set_ylabel("Count")
+
+    # plt.show()
+    fig1.savefig('fig0.pdf')
+
     #TODO: ------------------------------ INSERT JOSEPH'S CODE HERE.  MAKE SURE PLOTS GET SAVED THOUGH. ------------------------------#
 
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
