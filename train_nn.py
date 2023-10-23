@@ -318,11 +318,12 @@ def main(
 
 #------------------------------ MAIN ------------------------------#
 if __name__=="__main__":
-    if len(sys.argv)<=3:
+    if len(sys.argv)<=2:
         print(
         "Usage: python3",os.path.abspath(sys.argv[0]),
         " 'xyz_regex' 'ptp_regex' "
         )
+        print("NOTE: quotes around regex are important!")
         sys.exit(0)
 
     xyz_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1])]
