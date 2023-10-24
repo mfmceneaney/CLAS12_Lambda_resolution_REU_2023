@@ -68,13 +68,13 @@ def main(
     print("INFO: np.shape(p_true), np.shape(theta_true), np.shape(phi_true) = ",np.shape(p_true),np.shape(theta_true),np.shape(phi_true))
     print("INFO: np.shape(vx_true), np.shape(vy_true), np.shape(vz_true) = ",np.shape(vx_true),np.shape(vy_true),np.shape(vz_true))
 
-    # Normalize theta values to the range [0, 1]
+    # Un-normalize theta values to the range [0, 1]
     theta_true = [theta * 180 for theta in theta_true]
 
-    # Normalize phi values to the range [0, 1]
+    # Un-normalize phi values to the range [0, 1]
     phi_true = [(phi * 360) -180 for phi in phi_true]
 
-    # Normalize p values to the range [0, 1]
+    # Un-normalize p values to the range [0, 1]
     p_true = [p * 2 for p in p_true]
 
     # Create a grid of subplots
