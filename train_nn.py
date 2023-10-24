@@ -365,8 +365,8 @@ if __name__=="__main__":
         print("NOTE: quotes around regex are important!")
         sys.exit(0)
 
-    xyz_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1])]
-    ptp_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[2])]
+    xyz_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[1].replace(r"'",""))]
+    ptp_file_list = [os.path.abspath(el) for el in glob.glob(sys.argv[2].replace(r"'",""))]
     split         = (0.8,0.1,0.1) #NOTE: #TODO: SET FROM CLI
     main(
         xyz_file_list,
