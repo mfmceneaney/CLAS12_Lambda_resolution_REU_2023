@@ -52,13 +52,14 @@ def main(
     xyz_test               = xyz_full[split_indices[1]:]
     p_theta_phi_test       = ptp_full[split_indices[1]:]
 
-    print("INFO: xyz, ptp train length = ",len(xyz_training),len(p_theta_phi_training))
-    print("INFO: xyz, ptp val   length = ",len(xyz_validation),len(p_theta_phi_validation))
-    print("INFO: xyz, ptp test  length = ",len(xyz_test),len(p_theta_phi_test))
+    print("INFO: xyz, ptp full  shape = ",np.shape(xyz_training),np.shape(p_theta_phi_training))
+    print("INFO: xyz, ptp train shape = ",np.shape(xyz_training),np.shape(p_theta_phi_training))
+    print("INFO: xyz, ptp val   shape = ",np.shape(xyz_validation),np.shape(p_theta_phi_validation))
+    print("INFO: xyz, ptp test  shape = ",np.shape(xyz_test),np.shape(p_theta_phi_test))
 
     # Get truth info from ptp here
-    print("DEBUGGING: np.shape(p_theta_phi_test) = ",np.shape(p_theta_phi_test))
-    p_true, theta_true, phi_true, vx_true, vy_true, vz_true = zip(np.swapaxes(p_theta_phi_test,0,1))
+    print("DEBUGGING: np.shape(ptp_full) = ",np.shape(ptp_full))
+    p_true, theta_true, phi_true, vx_true, vy_true, vz_true = zip(np.swapaxes(ptp_full,0,1))
     p_true     =  np.squeeze(p_true)
     theta_true = np.squeeze(theta_true)
     phi_true   = np.squeeze(phi_true)
