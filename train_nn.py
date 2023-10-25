@@ -127,6 +127,133 @@ def main(
     # plt.show()
     fig1.savefig('fig0.pdf')
 
+    # Create a grid of subplots
+    fig1, axs1 = plt.subplots(6, 6, figsize=(36, 36))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    ny, nx = axs1.shape
+    for i in range(0,ny):
+        for j in range(0,nx):
+            col = i*nx + j
+            print("DEBUGGING: i, j, col = ",i,j,col)
+            axs1[i,j].hist(xyz_full[:,col], bins=50, color="maroon")
+            axs1[i,j].set_xlabel("xyz_full[:,"+str(col)+"]")
+            axs1[i,j].set_ylabel("Count")
+
+    fig1.savefig('fig0_xyz.pdf')
+
+   # Create a grid of subplots
+    fig1, axs1 = plt.subplots(2, 3, figsize=(36, 36))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    ny, nx = axs1.shape
+    for i in range(0,ny):
+        for j in range(0,nx):
+            col = i*nx + j
+            print("DEBUGGING: i, j, col = ",i,j,col)
+            axs1[i,j].hist(ptp_full[:,col], bins=50, color="maroon")
+            axs1[i,j].set_xlabel("ptp_full[:,"+str(col)+"]")
+            axs1[i,j].set_ylabel("Count")
+
+    fig1.savefig('fig0_ptp.pdf')
+
+    # Create a grid of subplots
+    fig1, axs1 = plt.subplots(2, 3, figsize=(36, 36))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    ny, nx = axs1.shape
+    for i in range(0,ny):
+        for j in range(0,nx):
+            col = i*nx + j
+            print("DEBUGGING: i, j, col = ",i,j,col)
+            axs1[i,j].hist(p_theta_phi_training[:,col], bins=50, color="maroon")
+            axs1[i,j].set_xlabel("p_theta_phi_training[:,"+str(col)+"]")
+            axs1[i,j].set_ylabel("Count")
+
+    fig1.savefig('fig0_p_theta_phi_training.pdf')
+
+    # Create a grid of subplots
+    fig1, axs1 = plt.subplots(2, 3, figsize=(36, 36))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    ny, nx = axs1.shape
+    for i in range(0,ny):
+        for j in range(0,nx):
+            col = i*nx + j
+            print("DEBUGGING: i, j, col = ",i,j,col)
+            axs1[i,j].hist(p_theta_phi_validation[:,col], bins=50, color="maroon")
+            axs1[i,j].set_xlabel("p_theta_phi_validation[:,"+str(col)+"]")
+            axs1[i,j].set_ylabel("Count")
+
+    fig1.savefig('fig0_p_theta_phi_validation.pdf')
+
+    # Create a grid of subplots
+    fig1, axs1 = plt.subplots(2, 3, figsize=(36, 36))
+
+    # Adjust spacing
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    ny, nx = axs1.shape
+    for i in range(0,ny):
+        for j in range(0,nx):
+            col = i*nx + j
+            print("DEBUGGING: i, j, col = ",i,j,col)
+            axs1[i,j].hist(p_theta_phi_test[:,col], bins=50, color="maroon")
+            axs1[i,j].set_xlabel("p_theta_phi_test[:,"+str(col)+"]")
+            axs1[i,j].set_ylabel("Count")
+
+    fig1.savefig('fig0_p_theta_phi_test.pdf')
+
+    #----- PLOT P, THETA, PHI RESOLUTION -----#                                                                                                                                 
+    p_recon     = np.squeeze(xyz_full[:,-3]) * 2
+    theta_recon = np.squeeze(xyz_full[:,-2]) * 180
+    phi_recon   = np.squeeze(xyz_full[:,-1]) * 360 - 180
+
+    # Create a grid of subplots                                                                                                                                                 
+    fig1, axs1 = plt.subplots(1, 3, figsize=(25, 8))
+
+    # Adjust spacing                                                                                                                                                            
+    fig1.subplots_adjust(hspace=0.5)
+    fig1.subplots_adjust(wspace=0.5)
+
+    axs1[0].hist(p_true - p_recon, bins=200, color="black")
+    axs1[0].set_xlabel("momentum, p resolution(GeV)")
+    axs1[0].set_ylabel("Count")
+
+    axs1[1].hist(theta_true - theta_recon, bins=200, color="blue")
+    axs1[1].set_xlabel(r"azimuthal angle $\theta$ resolution(degrees)")
+    axs1[1].set_ylabel("Count")
+
+    axs1[1].set_title("p, theta, and phi resolution MC\n\n", loc='center', fontsize=24)
+
+
+    axs1[2].hist(phi_true - phi_recon, bins=200, color="green")
+    axs1[2].set_xlabel("polar angle $\phi$ resolution(degrees)")
+    axs1[2].set_ylabel("Count")
+
+    fig1.savefig('fig0_delta_ptp.pdf')
+
+    # Now reset truth arrays to test subset instead of full dataset for matching algorithm below
+    p_true     = p_true[split_indices[1]:]
+    theta_true = theta_true[split_indices[1]:]
+    phi_true   = phi_true[split_indices[1]:]
+    vx_true    = vx_true[split_indices[1]:]
+    vy_true    = vy_true[split_indices[1]:]
+    vz_true    = vz_true[split_indices[1]:]
+
     #TODO: ------------------------------ INSERT JOSEPH'S CODE HERE.  MAKE SURE PLOTS GET SAVED THOUGH. ------------------------------#
 
     print(len(xyz_training), len(xyz_training[0]), len(p_theta_phi_training), len(p_theta_phi_training[0]))
