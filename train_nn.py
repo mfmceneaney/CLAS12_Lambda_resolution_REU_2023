@@ -403,6 +403,7 @@ def main(
     # matching with cutoffs |theta_mc-theta_rec|<2deg and |phi_mc-phi_rec|<6deg, minimize quadrature sum error
     # change matching formula to also include momentum? |p_true - p_predictions|<0.05 GeV
 
+    """
     start_time = timeit.default_timer()
 
     p_predictions_changing = p_predictions[:]
@@ -460,6 +461,39 @@ def main(
     p_difference = np.array(p_difference)
     theta_difference = np.array(theta_difference)
     phi_difference = np.array(phi_difference)
+    """
+    
+    print("DEBUGGING: np.shape(p_predictions)     = ",np.shape(p_predictions))
+    print("DEBUGGING: np.shape(p_true)            = ",np.shape(p_true))
+    print("DEBUGGING: np.shape(theta_predictions) = ",np.shape(theta_predictions))
+    print("DEBUGGING: np.shape(theta_true)        = ",np.shape(theta_true))
+    print("DEBUGGING: np.shape(phi_predictions)   = ",np.shape(phi_predictions))
+    print("DEBUGGING: np.shape(phi_true)          = ",np.shape(phi_true))
+    print("DEBUGGING: np.shape(vx_predictions)    = ",np.shape(vx_predictions))
+    print("DEBUGGING: np.shape(vx_true)           = ",np.shape(vx_true))
+    print("DEBUGGING: np.shape(vy_predictions)    = ",np.shape(vy_predictions))
+    print("DEBUGGING: np.shape(vy_true)           = ",np.shape(vy_true))
+    print("DEBUGGING: np.shape(vz_predictions)    = ",np.shape(vz_predictions))
+    print("DEBUGGING: np.shape(vz_true)           = ",np.shape(vz_true))
+
+    p_difference = np.array(p_predictions) - np.array(p_true)
+    theta_difference = np.array(theta_predictions) - np.array(theta_true)
+    phi_difference = np.array(phi_predictions) - np.array(phi_true)
+    vx_difference = np.array(vx_predictions) - np.array(vx_true)
+    vy_difference = np.array(vy_predictions) - np.array(vy_true)
+    vz_difference = np.array(vz_predictions) - np.array(vz_true)
+
+    # Reset recon arrays to align with the test subset
+    p_recon     = np.squeeze(xyz_test[:,-3]) * 2
+    theta_recon = np.squeeze(xyz_test[:,-2]) * 180
+    phi_recon   = np.squeeze(xyz_test[:,-1]) * 360 - 180
+
+    p_difference_recon = np.array(p_recon) - np.array(p_true)
+    theta_difference_recon = np.array(theta_recon) - np.array(theta_true)
+    phi_difference_recon = np.array(phi_recon) - np.array(phi_true)
+    #vx_difference_recon = np.array(vx_recon) - np.array(vx_true) #TODO: GET V*_RECON???
+    #vy_difference_recon = np.array(vy_recon) - np.array(vy_true)
+    #vz_difference_recon = np.array(vz_recon) - np.array(vz_true)
 
     # Create a grid of subplots
     fig1, axs1 = plt.subplots(1, 3, figsize=(25, 12))
