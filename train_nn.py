@@ -497,7 +497,7 @@ def main(
     #vz_difference_recon = np.array(vz_recon) - np.array(vz_true)
 
     # Create a grid of subplots
-    fig1, axs1 = plt.subplots(1, 3, figsize=(25, 12))
+    fig1, axs1 = plt.subplots(2, 3, figsize=(25, 12))
 
     # Adjust spacing
     fig1.subplots_adjust(hspace=0.5)
@@ -505,21 +505,39 @@ def main(
 
     # predicted data resolution histograms
 
-    axs1[0].hist(theta_difference, bins=100, color="fuchsia")
-    axs1[0].set_ylabel("Count")
-    axs1[0].set_xlabel(r"$\theta$ difference (degrees)")
+    axs1[0,0].hist(p_difference, bins=100, color="darkseagreen")
+    axs1[0,0].set_ylabel("Count")
+    axs1[0,0].set_xlabel(r"$\Delta p$ (GeV)")
+    axs1[0,0].set_xlim(-0.1, 0.1)
 
-    axs1[1].hist(phi_difference, bins=3000, color="mediumblue")
-    axs1[1].set_ylabel("Count")
-    axs1[1].set_xlabel(r"$\phi$ difference (degrees)")
-    axs1[1].set_xlim(-6, 6)
+    axs1[0,1].hist(theta_difference, bins=100, color="fuchsia")
+    axs1[0,1].set_ylabel("Count")
+    axs1[0,1].set_xlabel(r"$\Delta\theta$ (deg.)")
+    axs1[0,1].set_xlim(-2, 2)
 
-    axs1[2].hist(p_difference, bins=100, color="darkseagreen")
-    axs1[2].set_ylabel("Count")
-    axs1[2].set_xlabel(r"p difference (GeV)")
+    axs1[0,2].hist(phi_difference, bins=3000, color="mediumblue")
+    axs1[0,2].set_ylabel("Count")
+    axs1[0,2].set_xlabel(r"$\Delta\phi$ (deg.)")
+    axs1[0,2].set_xlim(-6, 6)
 
+    axs1[1,0].hist(p_difference_recon, bins=100, color="darkseagreen")
+    axs1[1,0].set_ylabel("Count")
+    axs1[1,0].set_xlabel(r"$\Delta p$ (GeV)")
+    axs1[1,0].set_xlim(-0.1, 0.1)
 
-    plt.suptitle("Angle and momentum resolution", fontsize=24)
+    axs1[1,1].hist(theta_difference_recon, bins=100, color="fuchsia")
+    axs1[1,1].set_ylabel("Count")
+    axs1[1,1].set_xlabel(r"$\Delta\theta$ (deg.)")
+    axs1[1,1].set_xlim(-2, 2)
+
+    axs1[1,2].hist(phi_difference_recon, bins=3000, color="mediumblue")
+    axs1[1,2].set_ylabel("Count")
+    axs1[1,2].set_xlabel(r"$\Delta\phi$ (deg.)")
+    axs1[1,2].set_xlim(-6, 6)
+
+    axs1[1,1].set_title("Base angle and momentum resolution", loc='center', fontsize=24)
+
+    plt.suptitle("Predicted angle and momentum resolution", fontsize=24)
 
     # plt.show()
     fig1.savefig('fig3.pdf')
