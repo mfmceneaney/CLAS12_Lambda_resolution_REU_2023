@@ -78,6 +78,16 @@ def main(
     # Un-normalize p values to the range [0, 1]
     p_true = [p * 2 for p in p_true]
 
+    # Set vertex normalization values
+    vx_max = 5
+    vy_max = 5
+    vz_max = 20
+
+    # Un-normalize vertex values
+    vx_true = vx_true * vx_max
+    vy_true = vy_true * vy_max
+    vz_true = vz_true * vz_max
+
     # Create a grid of subplots
     fig1, axs1 = plt.subplots(2, 3, figsize=(25, 16))
 
