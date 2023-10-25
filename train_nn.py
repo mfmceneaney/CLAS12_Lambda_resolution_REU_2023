@@ -234,14 +234,15 @@ def main(
     axs1[0].set_ylabel("Count")
 
     axs1[1].hist(theta_true - theta_recon, bins=200, color="blue")
-    axs1[1].set_xlabel(r"azimuthal angle $\theta$ resolution(degrees)")
+    axs1[1].set_xlabel(r"polar angle $\theta$ resolution(degrees)")
     axs1[1].set_ylabel("Count")
+    axs1[1].set_xlim(-6, 6)
 
     axs1[1].set_title("p, theta, and phi resolution MC\n\n", loc='center', fontsize=24)
 
 
     axs1[2].hist(phi_true - phi_recon, bins=200, color="green")
-    axs1[2].set_xlabel("polar angle $\phi$ resolution(degrees)")
+    axs1[2].set_xlabel("azimuthal angle $\phi$ resolution(degrees)")
     axs1[2].set_ylabel("Count")
 
     fig1.savefig('fig0_delta_ptp.pdf')
@@ -462,7 +463,7 @@ def main(
     theta_difference = np.array(theta_difference)
     phi_difference = np.array(phi_difference)
     """
-    
+
     print("DEBUGGING: np.shape(p_predictions)     = ",np.shape(p_predictions))
     print("DEBUGGING: np.shape(p_true)            = ",np.shape(p_true))
     print("DEBUGGING: np.shape(theta_predictions) = ",np.shape(theta_predictions))
