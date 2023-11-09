@@ -284,6 +284,7 @@ def main(
     rec_particle_entry_indices = [1,2,3,4,5,6,7,9], # (pid), px, py, pz, vx, vy, vz, vt (Only in data), (charge), beta, (chi2pid), (status) #TODO: SET THESE OUTSIDE LOOPS
     rec_traj_entry_indices     = [2,3,4,5,6,7,8,9,10], # (pindex), (index), detector, layer, x, y, z, cx, cy, cz, path #TODO: SET THESE OUTSIDE LOOPS
     truth_entry_indices        = [11,12,13], # vx, vy, vz #TODO: SET THESE OUTSIDE LOOPS
+    replacement_header = 'REPLACEMENT_HEADER',
     ):
 
     # Iterate hipo file
