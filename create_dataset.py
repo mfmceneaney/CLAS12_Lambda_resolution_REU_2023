@@ -246,7 +246,7 @@ def get_truth_info(base_indices,match_indices,truth_entry_indices,mc_event_table
     
     return ak.Array(bank_info)
 
-def remove_replacement_header(filename,replacement_header="REPLACEMENT_HEADER")
+def remove_replacement_header(filename,replacement_header="REPLACEMENT_HEADER"):
     # Read in the file
     with open(filename, 'r') as file:
         filedata = file.read()
