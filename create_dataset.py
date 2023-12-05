@@ -371,6 +371,17 @@ def main(
         with open(truth_file_name, "ab" if batch_num>0 else "wb") as f:
             header = replacement_header+delimiter.join([mc_lund_keys[idx] for idx in truth_entry_indices]) if batch_num==0 else "" #NOTE: NOT GENERALIZED
             np.savetxt(f, batch_truth, header=header, delimiter=delimiter, fmt=fmt)
+
+        # Write to parquet
+        rec_particle_header = [rec_particle_keys[idx] for idx in rec_particle_entry_indices]
+        rec_traj_header = [key+'_'+str(i) for key in [rec_traj_keys[idx] for idx in rec_traj_entry_indices] for i in range(max_linked_entries)]
+        batch_info_keys = [*rec_particle_header, *rec_traj_header]
+        batch_info_df = pd.DataFrame(data=batch_info,columns=batch_info_keys)
+        batch_info_df.to_parquet(data_file_name+'_'+str(batch_num+1)+'.parquet')
+
+        batch_truth_keys = [mc_lund_keys[idx] for idx in truth_entry_indices]
+        batch_truth_df = pd.DataFrame(data=batch_truth,columns=batch_truth_keys)
+        batch_truth_df.to_parquet(truth_file_name+'_'+str(batch_num+1)+'.parquet')
             
     remove_replacement_header(data_file_name,replacement_header=replacement_header)
     remove_replacement_header(truth_file_name,replacement_header=replacement_header)
@@ -391,7 +402,7 @@ if __name__=="__main__":
             'MC::Lund',
             'REC::Traj',
         ],
-        step  = 1000,
+        step  = 10000,
         max_linked_entries = 30,
         data_file_name  = out_path1,
         truth_file_name = out_path2,
