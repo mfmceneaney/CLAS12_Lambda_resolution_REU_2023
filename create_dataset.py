@@ -362,6 +362,10 @@ def main(
         batch_info  = batch_info.astype(np.float64)
         batch_truth = batch_truth.astype(np.float64)
 
+        # Reset infs and NaNs in info only for now
+        batch_info[np.isinf(batch_info)] = 0.0
+        batch_info[np.isnan(batch_info)] = 0.0
+
         # Write batch data to file
         fmt = ["%.3g" for i in range(np.shape(batch_info)[1])]
         with open(data_file_name, "ab" if batch_num>0 else "wb") as f:
