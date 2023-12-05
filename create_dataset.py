@@ -358,6 +358,10 @@ def main(
             batch_info  = np.concatenate((batch_info,event_info),axis=0) if batch_info is not None else np.array(event_info)#NOTE: CHECK THIS...
             batch_truth = np.concatenate((batch_truth,event_truth),axis=0) if batch_truth is not None else np.array(event_truth)#NOTE: CHECK THIS...
         
+        # Convert data type of inputs
+        batch_info  = batch_info.astype(np.float64)
+        batch_truth = batch_truth.astype(np.float64)
+
         # Write batch data to file
         fmt = ["%.3g" for i in range(np.shape(batch_info)[1])]
         with open(data_file_name, "ab" if batch_num>0 else "wb") as f:
