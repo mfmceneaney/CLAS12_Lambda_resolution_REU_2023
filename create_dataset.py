@@ -370,7 +370,7 @@ def main(
         fmt = ["%.3g" for i in range(np.shape(batch_info)[1])]
         with open(data_file_name, "ab" if batch_num>0 else "wb") as f:
             rec_particle_header = [rec_particle_keys[idx] for idx in rec_particle_entry_indices]
-            rec_traj_header = [key+'_'+str(i) for key in [rec_traj_keys[idx] for idx in rec_traj_entry_indices] for i in range(max_linked_entries)]
+            rec_traj_header = [key+'_'+str(i) for i in range(max_linked_entries) for key in [rec_traj_keys[idx] for idx in rec_traj_entry_indices]]
             header = replacement_header+delimiter.join([*rec_particle_header, *rec_traj_header]) if batch_num==0 else "" #NOTE: NOT GENERALIZED
             np.savetxt(f, batch_info, header=header, delimiter=delimiter, fmt=fmt)
             
